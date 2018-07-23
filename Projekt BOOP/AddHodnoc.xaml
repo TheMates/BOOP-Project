@@ -1,0 +1,24 @@
+﻿<Window x:Class="Projekt_BOOP.AddHodnoc"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Přidat hodnocení" Height="217" Width="233
+        " ResizeMode="NoResize">
+    <Grid>
+        <ComboBox x:Name="CmbAddHodnName" IsEditable="True" SelectedValuePath="Content" TextBoxBase.TextChanged="CmbAddHodnName_TextChanged"  HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="207" />
+        <ComboBox x:Name="CmbAddHodnStudName" IsEditable="True" SelectedValuePath="Content" TextBoxBase.TextChanged="CmbAddHodnName_TextChanged"  HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="152" />
+        <Label Content="Název předmětu" HorizontalAlignment="Left" Margin="5,54,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CmbAddHodnocZkr" TextBoxBase.TextChanged="CmbAddHodnName_TextChanged" HorizontalAlignment="Left" IsEditable="True" SelectedValuePath="Content" Margin="10,129,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Zkratka přemětu" HorizontalAlignment="Left" Margin="5,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblAddHodnocStudName"  HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Content="Jméno"/>
+        <Label x:Name="LblAddHodnocStudId" Content="ID0000" Margin="0,29,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50"/>
+        <ComboBox x:Name="CmbAddHodnocHodnoc" Margin="0,129,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="BtnAddHodnocSAVE" Content="Uložit" Margin="142,156,0,10" HorizontalAlignment="Left" Width="75" Click="BtnAddHodnocSAVE_Click"/>
+        <Label Content="Hodnocení" HorizontalAlignment="Left" Margin="137,103,0,0" VerticalAlignment="Top"/>
+        <Border x:Name="BrdAddHodnName" BorderThickness="1" HorizontalAlignment="Left" Height="22" Margin="10,80,0,0" VerticalAlignment="Top" Width="207" ScrollViewer.CanContentScroll="True" RenderTransformOrigin="0.282,1.394"/>
+        <Border x:Name="BrdAddHodnZkr" BorderThickness="1" HorizontalAlignment="Left" Height="22" Margin="10,129,0,0" VerticalAlignment="Top" Width="92"/>
+        <Border x:Name="BrdAddHodnHodn" BorderThickness="1" HorizontalAlignment="Left" Height="22" Margin="142,129,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="LblId" Content="ID" HorizontalAlignment="Left" Margin="167,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="1,0.558"/>
+        <Border x:Name="BrdAddHodnStudName"  BorderThickness="1" HorizontalAlignment="Left" Height="22" Margin="10,31,0,0" VerticalAlignment="Top" Width="152"/>
+
+    </Grid>
+</Window>

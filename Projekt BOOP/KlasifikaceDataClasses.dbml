@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Klasifikace" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Klasifikace.mdf;Integrated Security=True" SettingsObjectName="Projekt_BOOP.Properties.Settings" SettingsPropertyName="KlasifikaceConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Fakulty" Member="Fakulties">
+    <Type Name="Fakulty">
+      <Column Name="FakultaID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FakultaNazev" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Fakulty_Studenti" Member="Studentis" ThisKey="FakultaID" OtherKey="Fakulta" Type="Studenti" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Studenti" Member="Studentis">
+    <Type Name="Studenti">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Jmeno" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Prijmeni" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fakulta" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Rocnik" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="Studenti_Hodnoceni" Member="Hodnocenis" ThisKey="Id" OtherKey="IdStud" Type="Hodnoceni" />
+      <Association Name="Fakulty_Studenti" Member="Fakulty" ThisKey="Fakulta" OtherKey="FakultaID" Type="Fakulty" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentiList" Member="StudentiLists">
+    <Type Name="StudentiList">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Prijmeni" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Jmeno" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rocnik" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Fakulta" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hodnoceni" Member="Hodnocenis">
+    <Type Name="Hodnoceni">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdStud" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdPredm" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Hodn" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Association Name="Studenti_Hodnoceni" Member="Studenti" ThisKey="IdStud" OtherKey="Id" Type="Studenti" IsForeignKey="true" />
+      <Association Name="Predmety_Hodnoceni" Member="Predmety" ThisKey="IdPredm" OtherKey="ZkratkaPredm" Type="Predmety" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Znamky" Member="Znamkies">
+    <Type Name="Znamky">
+      <Column Name="ZnamkaValue" Type="System.Single" DbType="Real NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ZnamkaAlias" Type="System.Char" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Predmety" Member="Predmeties">
+    <Type Name="Predmety">
+      <Column Name="ZkratkaPredm" Type="System.String" DbType="NVarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NazevPredm" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Predmety_Hodnoceni" Member="Hodnocenis" ThisKey="ZkratkaPredm" OtherKey="IdPredm" Type="Hodnoceni" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VypisPredmety" Member="VypisPredmeties">
+    <Type Name="VypisPredmety">
+      <Column Name="Zkratka" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Název" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Počet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Průměr" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VypisHodnoceni" Member="VypisHodnocenis">
+    <Type Name="VypisHodnoceni">
+      <Column Name="ZkratkaJoin" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Jmeno" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Prijmeni" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ZkratkaPredm" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Hodnocení" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="NazevPredm" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VypisHodnoceniAlias" Member="VypisHodnoceniAlias">
+    <Type Name="VypisHodnoceniAlias">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Jmeno" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Prijmeni" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ZkratkaPredm" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Hodnocení" Type="System.Char" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="NazevPredm" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
